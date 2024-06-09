@@ -8,19 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 class Book extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'description','image', 'publication_date','publisher_id','shelf_id','categorie_id','isb'];
-    public function publisher()
-    {
-        return $this->belongsTo(Publisher::class);
+    protected $fillable = ['title', 'description','image', 'publisher_id','shelf_id','category_id','isbn'];
+
+
+
+    public function category() {
+        return $this->belongsTo(Categorie::class, 'category_id');
     }
 
-    public function shelves()
-    {
-        return $this->belongsTo(Shelve::class);
+    public function shelf() {
+        return $this->belongsTo(Shelve::class, 'shelf_id');
     }
 
-    public function categories()
-    {
-        return $this->belongsTo(Categorie::class);
+    public function publisher() {
+        return $this->belongsTo(Publisher::class, 'publisher_id');
+    }
+
+    public function autor() {
+        return $this->belongsTo(Autor::class, 'autor_id');
     }
 }

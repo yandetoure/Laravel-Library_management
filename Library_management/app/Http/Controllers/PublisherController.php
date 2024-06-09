@@ -32,20 +32,20 @@ class PublisherController extends Controller
         return view('publishers.edit', compact('publisher'));
     }
     
-    public function update(Request $request, Publisher $autor)
+    public function update(Request $request, Publisher $publisher)
     {
         $request->validate([
             'name' => 'required|string|max:255',
             'adress' =>'required',
         ]);
     
-        $autor->update($request->all());
+        $publisher->update($request->all());
         return redirect()->route('publishers.show')->with('success', 'Auteur modifié avec succés.');
     }
     
-    public function destroy(Publisher $autor)
+    public function destroy(Publisher $publisher)
     {
-        $autor->delete();
+        $publisher->delete();
         return redirect()->route('publishers.show')->with('success', 'Auteur supprimé avec succés .');
     }
     

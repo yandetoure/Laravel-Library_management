@@ -35,7 +35,8 @@ public function create(){
     public function update(Request $request, Categorie $categorie)
     {
         $request->validate([
-            'libelle' => 'required|string|max:255',
+            'title' => 'required|string|max:255',
+            'description' =>'required',
         ]);
 
         $categorie->update($request->all());

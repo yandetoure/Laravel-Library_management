@@ -6,7 +6,8 @@ use App\Models\Autor;
 use Illuminate\Http\Request;
 
 class AutorController extends Controller
-{public function index(){
+{
+    public function index(){
     $autors = Autor::all();
     return view('autors/show',compact('autors'));
 }

@@ -30,6 +30,15 @@
         li{
             padding-left: 50px;
         }
+    }.side{
+      margin-top: 100px;
+      h4{
+        font-weight: bold;
+        margin-bottom: 15px;
+      }
+      .card-desc{
+        margin-top: 25px;
+      }
     }
   </style>
 </head>
@@ -80,11 +89,13 @@
                 <h5 class="card-title">{{ $book->title }}</h5>
                 <h6 class="card-text"><small class="text-muted">Catégorie : {{ $book->category->title }}</small></h6>
                 <div class="btn-group mt-auto btn-group-custom" role="group">
+                  @if(Auth::user())
                   <a href="{{ route('books.edit', $book->id) }}" class="btn btn-primary">Modifier</a>
                   <form action="{{ route('books.destroy', $book->id) }}" method="POST" style="display:inline;">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Supprimer</button>
+                    @endif
                   </form>
                 </div>
               </div>
@@ -92,16 +103,17 @@
           </div>
 
           <div class="side col-md-6 mb-2">
-            <h4 class="card-text"><small class="text-muted">Rayon : {{ $book->shelf->title }}</small></h4>
-            <h5 class="card-text"><small class="text-muted">Titre : {{ $book->title }}</small></h5>
-            <h5 class="card-text"><small class="text-muted">Auteur : {{ $book->autor }}</small></h5>
+
+            <h4 class="card-text"><small class="text-muted">Titre : {{ $book->title }}</small></h4>
+            <h5 class="card-text"><small class="text-muted">Auteur  :  {{ $book->autor->name }}</small></h5>
             <h5 class="card-text"><small class="text-muted">Publié en  : {{ $book->publication_date }}</small></h5>
             <h5 class="card-text"><small class="text-muted">Par la maison d'édition : {{ $book->publisher->name }}</small></h5>
-            <h5 class="card-text"><small class="text-muted">Résumé : {{ $book->description }}</small></h5>
+            <h5 class="card-desc"><small class="text-muted">Résumé : {{ $book->description }}</small></h5>
+            <h4 class="card-text"><small class="text-muted">Rayon : {{ $book->shelf->title }}</small></h4>
           </div>
 
           <div class="categories col-md-2">
-            Rechercher par catégorie
+      
           </div>
         </div>
       </div>

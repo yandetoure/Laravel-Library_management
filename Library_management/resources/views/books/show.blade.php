@@ -23,19 +23,21 @@
             padding-left: 50px;
         }
     }
-    .btn-style{
-      
+    h5{
+      margin-top: 20px;
+      margin-bottom: 20px;
     }
     .btn-connect{
       color: white;
       padding-right: 15px;
     }
+
   </style>
 </head>
 
 <body>
 <nav class="navbar navbar-dark bg-dark navbar navbar-expand-lg navbar-light bg-light w-100">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <a class="navbar-brand" href="#">ÉliteBiblio</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -59,7 +61,7 @@
       </li>
     </ul>
     @if(Auth::user())
-    <button class="btn btn-outline">  <a href="{{ route('books.create') }}" class=" btn btn-connect">Enregistrer un livre</a></button>
+    <button class="btn btn-outline-primary add">  <a href="{{ route('books.create') }}" class=" btn btn-connect">Enregistrer un livre</a></button>
     <form action="{{ route('logout') }}" method="POST" class="d-flex" role="search">
     @csrf
     @method('delete')
@@ -76,9 +78,6 @@
 <h5>Bonjour {{ Auth::user()->name }} Bienvenue dans le gestion de votre bibliothéque </h5>
 @endif
   <div class="row">
-    @if(Auth::user())
-  <a href="{{ route('books.create') }}" class=" btn btn-primary mb-4">Enregistrer un livre</a>
-  @endif
     <div class="col text-center">
         <div class="banner d-flex">
         <form class="d-flex col-md-12"  method="GET">
@@ -101,7 +100,7 @@
                 <img src="{{ $book->image }}" class="card-img-top" alt="{{ $book->title }}" style="height: 300px; object-fit: cover;">
                 <div class="card-body d-flex flex-column">
                   <h5 class="card-title">{{ $book->title }}</h5>
-                  <p class="card-text flex-grow-1"><small class="text-muted">Auteur : {{ $book->autor->name }}</small></p>
+                  <p class="card-text flex-grow-1"><small class="text-muted">Maison d'édition : {{ $book->autor->name }}</small></p>
                   <p class="card-text"><small class="text-muted">Catégorie : {{ $book->category->title }}</small></p>
                 </div>
               </div>

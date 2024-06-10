@@ -26,7 +26,7 @@ class BookController extends Controller
     public function store(Request $request){
         $request->validate([
             'title' =>'required',
-            'description' => 'required|string',
+            'description' => 'required|string|max:1000',         
             'isbn' => 'required',
             'publication_date' => 'required',
             'category_id' => 'required|exists:categories,id',
@@ -61,9 +61,10 @@ class BookController extends Controller
     {
         $request->validate([
             'title' =>'required',
-            'description' => 'required|string',
+            'description' => 'required|string|max:1000'   ,         
             'isbn' => 'required',
             'publication_date' => 'required',
+            'autor_id' => 'required',
             'category_id' => 'required|exists:categories,id',
             'shelf_id' => 'required|exists:shelves,id',
             'publisher_id' => 'required|exists:publishers,id',

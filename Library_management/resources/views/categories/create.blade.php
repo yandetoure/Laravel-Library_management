@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Category</title>
+    <title>Créer Catégorie</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -39,7 +39,7 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h2 class="text-center mb-4">Create Category</h2>
+        <h2 class="text-center mb-4">Créer catégorie</h2>
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -60,8 +60,8 @@
                 <input type="text" name="description" id="description" class="form-control" required>
             </div>
             <div class="form-group text-center">
-                <button type="submit" class="btn btn-primary">Create</button>
-                <a href="{{ route('categories.show') }}" class="btn btn-secondary">Back to Categories</a>
+                <button type="submit" class="btn btn-primary">Ajouter</button>
+                <a href="{{ route('categories.show') }}" class="btn btn-secondary">Liste des catégories</a>
             </div>
         </form>
     </div>

@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Edit Book</title>
+  <title>Modifier livre</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
@@ -24,9 +24,17 @@
         <textarea class="form-control" id="description" name="description" required>{{ $book->description }}</textarea>
       </div>
       <div class="mb-3">
+    <label for="image" class="form-label">Image</label>
+    <input type="text" class="form-control" id="image" name="image" value="{{$book->image}}" required>
+  </div>
+      <div class="mb-3">
         <label for="isbn" class="form-label">ISBN</label>
         <input type="text" class="form-control" id="isbn" name="isbn" value="{{ $book->isbn }}" required>
       </div>
+      <div class="form-group">
+    <label for="publication_date" class="form-label">Date de publication</label>
+    <input type="date" class="form-control" id="publication_date" name="publication_date"value="{{ $book->publication_date }}" required>
+  </div> 
       <div class="mb-3">
         <label for="category_id" class="form-label">Category</label>
         <select class="form-control" id="category_id" name="category_id" required>
@@ -59,7 +67,7 @@
           @endforeach
         </select>
       </div>
-      <button type="submit" class="btn btn-primary">Update</button>
+      <button type="submit" class="btn btn-primary">Modifier</button>
     </form>
   </div>
 

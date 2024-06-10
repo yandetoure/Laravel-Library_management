@@ -27,13 +27,54 @@
             display: flex;
             justify-content: center;
         }
-    </style>
+        .card {
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: scale(1.05);
+    }
+    .navbar{
+        padding-left: 270px;
+        padding-right: 150px;
+        li{
+            padding-left: 50px;
+        }
+    }
+  </style>
 </head>
+
 <body>
+<nav class="navbar navbar-dark bg-dark navbar navbar-expand-lg navbar-light bg-light w-100">
+  <a class="navbar-brand" href="#">ÉliteBiblio</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav me-auto mb-4 mb-lg-0">
+      <li class="nav-item active">
+        <a class="nav-link" href="{{ route('books.show') }}">Accueil</a>
+      </li>
+      <li class="nav-item">
+      <a class="nav-link" href="{{ route('categories.show') }}">Categories</a>
+      </li>
+      <li class="nav-item dropdown">
+      <a class="nav-link" href="{{ route('shelves.show') }}">Rayons</a>
+
+      </li>
+      <li class="nav-item">
+      <a class="nav-link" href="{{ route('autors.show') }}">Auteurs</a>
+      </li>
+      <li class="nav-item">
+      <a class="nav-link" href="{{ route('publishers.show') }}">Maisons d'édition</a>
+      </li>
+    </ul>
+  </div>
+</nav>
     <div class="container">
         <h1 class="text-center">Categories</h1>
         <div class="d-flex justify-content-end mb-3">
-            <a href="{{ route('categories.create') }}" class="btn btn-primary">Create Category</a>
+            <a href="{{ route('categories.create') }}" class="btn btn-primary"> Ajouter</a>
         </div>
         @if (session('success'))
             <div class="alert alert-success">
@@ -58,11 +99,11 @@
                             <td>{{ $categorie->description }}</td>
                             <td>
                                 <div class="btn-group">
-                                    <a href="{{ route('categories.edit', $categorie->id) }}" class="btn btn-primary">Edit</a>
+                                    <a href="{{ route('categories.edit', $categorie->id) }}" class="btn btn-primary">Modofier</a>
                                     <form action="{{ route('categories.destroy', $categorie->id) }}" method="POST" style="display:inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                        <button type="submit" class="btn btn-danger">Supprimer</button>
                                     </form>
                                 </div>
                             </td>

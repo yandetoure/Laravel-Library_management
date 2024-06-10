@@ -26,8 +26,9 @@ class BookController extends Controller
     public function store(Request $request){
         $request->validate([
             'title' =>'required',
-            'description' => 'required|string',
+            'description' => 'required|string|max:1000',         
             'isbn' => 'required',
+            'publication_date' => 'required',
             'category_id' => 'required|exists:categories,id',
             'shelf_id' => 'required|exists:shelves,id',
             'publisher_id' => 'required|exists:publishers,id',
@@ -48,16 +49,22 @@ class BookController extends Controller
     
     public function edit($id)
     {
+        $categories = Categorie::all();
+        $shelves = Shelve::all();
+        $autors = Autor::all();
+        $publishers = Publisher::all();
         $book = Book::findOrFail($id);
-        return view('books.edit', compact('book'));
+        return view('books.edit', compact('book', 'categories', 'shelves', 'publishers', 'autors'));
     }
     
     public function update(Request $request, Book $book)
     {
         $request->validate([
             'title' =>'required',
-            'description' => 'required|string',
+            'description' => 'required|string|max:1000'   ,         
             'isbn' => 'required',
+            'publication_date' => 'required',
+            'autor_id' => 'required',
             'category_id' => 'required|exists:categories,id',
             'shelf_id' => 'required|exists:shelves,id',
             'publisher_id' => 'required|exists:publishers,id',
@@ -70,7 +77,11 @@ class BookController extends Controller
 
     public function more($id){
         $book = Book::findOrFail($id);
-        return view('books.more', compact('book'));
+        $categories = Categorie::all();
+        $shelves = Shelve::all();
+        $autors = Autor::all();
+        $publishers = Publisher::all();
+        return view ('books.more', compact('book', 'categories', 'shelves', 'publishers', 'autors'));
     }
 
     public function destroy(Book $book)

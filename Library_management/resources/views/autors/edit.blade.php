@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Category</title>
+    <title>Modifier l'auteur</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -39,7 +39,7 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h2 class="text-center mb-4">Modifier la Catégorie</h2>
+        <h2 class="text-center mb-4">Modifier l'auteur</h2>
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -58,7 +58,7 @@
             </div>
             <div class="form-group text-center">
                 <button type="submit" class="btn btn-primary">Modifier</button>
-                <a href="{{ route('autors.show') }}" class="btn btn-secondary">Liste des catégories</a>
+                <a href="{{ route('autors.show') }}" class="btn btn-secondary">Liste des auteurs</a>
             </div>
         </form>
     </div>

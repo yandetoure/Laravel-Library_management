@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CRUD IN LARAVEL 11</title>
+  <title>Livre</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
@@ -48,7 +48,6 @@
     </style>
 </head>
 <body>
-
 <div class="container">
     <div class="row align-items-start">
       <div class="col">
@@ -85,6 +84,10 @@
     <label for="isbn" class="form-label">Numéro du livre (isbn)</label>
     <input type="text" class="form-control" id="isbn" name="isbn">
   </div>  
+  <div class="form-group">
+    <label for="publication_date" class="form-label">Date de publication</label>
+    <input type="date" class="form-control" id="publication_date" name="publication_date">
+  </div>  
   <br>
   <div class="form-group">
             <label for="autor_id">Categorie</label>autors
@@ -120,7 +123,7 @@
         </div>
             <div class="form-group text-center">
                 <button type="submit" class="btn btn-primary">Ajouter</button>
-                <a href="{{ route('books.show') }}" class="btn btn-secondary">Liste d'auteurs</a>
+                <a href="{{ route('books.show') }}" class="btn btn-secondary">Liste des livres</a>
             </div>
         </form>
     </div>

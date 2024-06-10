@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('title');
             $table->text('image')->nullable();
             $table->string('description');
-            $table->date('publication_date');
             $table->string('isbn')->unique();
             $table->unsignedBigInteger('publisher_id');
             $table->unsignedBigInteger('shelf_id');

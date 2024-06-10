@@ -31,7 +31,6 @@
       color: white;
       padding-right: 15px;
     }
-
   </style>
 </head>
 
@@ -61,7 +60,7 @@
       </li>
     </ul>
     @if(Auth::user())
-    <button class="btn btn-outline-primary add">  <a href="{{ route('books.create') }}" class=" btn btn-connect">Enregistrer un livre</a></button>
+    <button class="btn btn-outline-primary"> <a href="{{ route('books.create') }}" class=" btn btn-connect">Enregistrer un livre</a></button>
     <form action="{{ route('logout') }}" method="POST" class="d-flex" role="search">
     @csrf
     @method('delete')

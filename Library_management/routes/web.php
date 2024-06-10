@@ -23,7 +23,7 @@ Route::prefix('categories')->name('categories.')->middleware('auth')->group(func
     Route::put('/{categorie}', [CategorieController::class, 'update'])->name('update');
     Route::delete('/{categorie}', [CategorieController::class, 'destroy'])->name('destroy');
 });
-Route::prefix('autors')->name('autors.')->group(function () {
+Route::prefix('autors')->name('autors.')->middleware('auth')->group(function () {
     Route::get('/show', [AutorController::class, 'index'])->name('show');
     Route::get('/create', [AutorController::class, 'create'])->name('create');
     Route::post('/', [AutorController::class, 'store'])->name('store');
@@ -31,7 +31,7 @@ Route::prefix('autors')->name('autors.')->group(function () {
     Route::put('/{autor}', [AutorController::class, 'update'])->name('update');
     Route::delete('/{autor}', [AutorController::class, 'destroy'])->name('destroy');
 });
-Route::prefix('publishers')->name('publishers.')->group(function () {
+Route::prefix('publishers')->name('publishers.')->middleware('auth')->group(function () {
     Route::get('/show', [PublisherController::class, 'index'])->name('show');
     Route::get('/create', [PublisherController::class, 'create'])->name('create');
     Route::post('/', [PublisherController::class, 'store'])->name('store');
@@ -39,7 +39,7 @@ Route::prefix('publishers')->name('publishers.')->group(function () {
     Route::put('/{publisher}', [PublisherController::class, 'update'])->name('update');
     Route::delete('/{publisher}', [PublisherController::class, 'destroy'])->name('destroy');
 });
-Route::prefix('shelves')->name('shelves.')->group(function () {
+Route::prefix('shelves')->name('shelves.')->middleware('auth')->group(function () {
     Route::get('/show', [ShelveController::class, 'index'])->name('show');
     Route::get('/create', [ShelveController::class, 'create'])->name('create');
     Route::post('/', [ShelveController::class, 'store'])->name('store');
@@ -47,7 +47,7 @@ Route::prefix('shelves')->name('shelves.')->group(function () {
     Route::put('/{shelve}', [ShelveController::class, 'update'])->name('update');
     Route::delete('/{shelve}', [ShelveController::class, 'destroy'])->name('destroy');
 });
-Route::prefix('books')->name('books.')->group(function () {
+Route::prefix('books')->name('books.')->middleware('auth')->group(function () {
     Route::get('/show', [BookController::class, 'index'])->name('show');
     Route::get('/books/{id}/more', [BookController::class, 'more'])->name('more');
     Route::get('/create', [BookController::class, 'create'])->name('create');
@@ -56,7 +56,7 @@ Route::prefix('books')->name('books.')->group(function () {
     Route::put('/{book}', [BookController::class, 'update'])->name('update');
     Route::delete('/{book}', [BookController::class, 'destroy'])->name('destroy');
 });
-Route::prefix('students')->name('students.')->group(function () {
+Route::prefix('students')->name('students.')->middleware('auth')->group(function () {
     Route::get('/show', [StudentController::class, 'index'])->name('show');
     Route::get('/create', [StudentController::class, 'create'])->name('create');
     Route::post('/', [StudentController::class, 'store'])->name('store');

@@ -10,9 +10,11 @@
     .card {
       cursor: pointer;
       transition: transform 0.2s;
+      font-size: 20px;
     }
     .card:hover {
       transform: scale(1.05);
+      font-size: 18px;
     }
     .navbar{
         padding-left: 270px;
@@ -21,7 +23,13 @@
             padding-left: 50px;
         }
     }
-    .banner{}
+    .btn-style{
+      
+    }
+    .btn-connect{
+      color: white;
+      padding-right: 15px;
+    }
   </style>
 </head>
 
@@ -50,17 +58,32 @@
       <a class="nav-link" href="{{ route('publishers.show') }}">Maisons d'édition</a>
       </li>
     </ul>
+    @if(Auth::user())
+    <button class="btn btn-outline">  <a href="{{ route('books.create') }}" class=" btn btn-connect">Enregistrer un livre</a></button>
+    <form action="{{ route('logout') }}" method="POST" class="d-flex" role="search">
+    @csrf
+    @method('delete')
+    <button class="btn btn-danger" type="submit">Logout</button>
+</form> @else
+<button class="btn btn-outline "><a href="{{route('login')}}" class="btn-connect">Connexion</a></button>
+@endif
+
   </div>
 </nav>
 
 <div class="container my-5">
+  @if(Auth::user())
+<h5>Bonjour {{ Auth::user()->name }} Bienvenue dans le gestion de votre bibliothéque </h5>
+@endif
   <div class="row">
+    @if(Auth::user())
   <a href="{{ route('books.create') }}" class=" btn btn-primary mb-4">Enregistrer un livre</a>
+  @endif
     <div class="col text-center">
         <div class="banner d-flex">
         <form class="d-flex col-md-12"  method="GET">
-      <input class="form-control me-4" type="search" placeholder="Search" aria-label="Search" name="query">
-      <button class="btn btn-outline-primary" type="submit">Search</button>
+      <input class="form-control me-4" type="search" placeholder="Rechercher par livre, auteur, catégorie..." aria-label="Search" name="query">
+      <button class="btn btn-outline-primary" type="submit">Rechercher</button>
     </form>
         </div>
       <hr>
@@ -78,7 +101,7 @@
                 <img src="{{ $book->image }}" class="card-img-top" alt="{{ $book->title }}" style="height: 300px; object-fit: cover;">
                 <div class="card-body d-flex flex-column">
                   <h5 class="card-title">{{ $book->title }}</h5>
-                  <p class="card-text flex-grow-1"><small class="text-muted">Résumé : {{ $book->description }}</small></p>
+                  <p class="card-text flex-grow-1"><small class="text-muted">Auteur : {{ $book->autor->name }}</small></p>
                   <p class="card-text"><small class="text-muted">Catégorie : {{ $book->category->title }}</small></p>
                 </div>
               </div>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AutorController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategorieController;
@@ -9,18 +10,12 @@ use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 
-
-
-
-
-
-
 Route::get('/', function () {
-    return view('welcome');
+    return view('books.show');
 });
 
 
-Route::prefix('categories')->name('categories.')->group(function () {
+Route::prefix('categories')->name('categories.')->middleware('auth')->group(function () {
     Route::get('/show', [CategorieController::class, 'index'])->name('show');
     Route::get('/create', [CategorieController::class, 'create'])->name('create');
     Route::post('/', [CategorieController::class, 'store'])->name('store');
@@ -69,3 +64,11 @@ Route::prefix('students')->name('students.')->group(function () {
     Route::put('/{student}', [StudentController::class, 'update'])->name('update');
     Route::delete('/{student}', [StudentController::class, 'destroy'])->name('destroy');
 });
+
+Route::get('/signup', [AuthController::class,'signup'])->name('signup');
+Route::post('/signup', [AuthController::class, 'signupPost'])->name('signup');
+
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/login', [AuthController::class, 'loginPost'])->name('login');
+
+Route::delete('logout', [AuthController::class, 'logout'])->name('logout');

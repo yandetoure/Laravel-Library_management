@@ -85,6 +85,10 @@
     <label for="isbn" class="form-label">Numéro du livre (isbn)</label>
     <input type="text" class="form-control" id="isbn" name="isbn">
   </div>  
+  <div class="form-group">
+    <label for="publication_date" class="form-label">Date de publication</label>
+    <input type="date" class="form-control" id="publication_date" name="publication_date">
+  </div>  
   <br>
   <div class="form-group">
             <label for="autor_id">Categorie</label>autors
@@ -120,7 +124,7 @@
         </div>
             <div class="form-group text-center">
                 <button type="submit" class="btn btn-primary">Ajouter</button>
-                <a href="{{ route('books.show') }}" class="btn btn-secondary">Liste d'auteurs</a>
+                <a href="{{ route('books.show') }}" class="btn btn-secondary">Annuler</a>
             </div>
         </form>
     </div>

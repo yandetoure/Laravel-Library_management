@@ -6,16 +6,12 @@
   <title>CRUD IN LARAVEL 11</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
-<body>
 
-  
+<body>
   <div class="container text-center">
-    
     <div class="row">
       <div class="col">
-        <h1>CRUD DANS LARAVEL 11</h1>
-        <hr>
-        <a href="/ajouter" class="btn btn-primary mb-3">Ajouter des biens</a>
+
         <hr>
         @if(session('status'))
           <div class="alert alert-success">
@@ -24,24 +20,35 @@
         @endif
 
         <div class="row">
-          @foreach($biens as $bien)
             <div class="col-md-4 mb-4">
-              <div class="card">
-                <img src="{{ $bien->image }}" class="card-img-top" alt="{{ $bien->nom }}">
-                <div class="card-body">
-                  <h5 class="card-title">{{ $bien->nom }}</h5>
-                  {{-- <p class="card-text">{{ $bien->description }}</p> --}}
-                  <p class="card-text"><small class="text-muted">{{ $bien->date_de_creation }}</small></p>
-                  <p class="card-text"><strong>Statut:</strong> {{ $bien->statut ? 'occupe' : 'pas_occupe' }}</p>
-                  <a href="/modifier-bien/{{ $bien->id }}" class="btn btn-info">Modifier</a>
-                  <a href="/supprimer-bien/{{ $bien->id }}" class="btn btn-danger">Supprimer</a>
-                  <br>
-                  <br>
-                  <a href="#" class="btn btn-primary">Voir les détails</i></a>
+              <div class="card h-100">
+                <img src="{{ $book->image }}" class="card-img-top" alt="{{ $book->title }}" height="500">
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title">{{ $book->title }}</h5>
+                  <p class="card-text flex-grow-1"><small class="text-muted">Résumé : {{ $book->description }}</small></p>
+                  <p class="card-text"><small class="text-muted">Catégorie : {{ $book->category->title }}</small></p>
+                  <div class="btn-group mt-auto" role="group">
+                    <a href="{{ route('books.edit', $book->id) }}" class="btn btn-primary">Modifier</a>
+                    <form action="{{ route('books.destroy', $book->id) }}" method="POST" style="display:inline;">
+                      @csrf
+                      @method('DELETE')
+                      <button type="submit" class="btn btn-danger">Supprimer</button>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
-          @endforeach
+            <div class="col-md-2 mb-2" >
+            <div class="btn-group mt-auto" role="group">
+                  <a href="{{ route('books.show', $book->id) }}" class="btn btn-info"><i class="fas fa-info-circle"></i></a>
+                  <a href="{{ route('books.edit', $book->id) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                  <form action="{{ route('books.destroy', $book->id) }}" method="POST" style="display:inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                  </form>
+                </div>
+            </div>
         </div>
       </div>
     </div>

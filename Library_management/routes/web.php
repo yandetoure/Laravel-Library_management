@@ -54,8 +54,7 @@ Route::prefix('shelves')->name('shelves.')->group(function () {
 });
 Route::prefix('books')->name('books.')->group(function () {
     Route::get('/show', [BookController::class, 'index'])->name('show');
-Route::get('/books/{id}/more', [BookController::class, 'more'])->name('more');
-
+    Route::get('/books/{id}/more', [BookController::class, 'more'])->name('more');
     Route::get('/create', [BookController::class, 'create'])->name('create');
     Route::post('/', [BookController::class, 'store'])->name('store');
     Route::get('/{book}/edit', [BookController::class, 'edit'])->name('edit');

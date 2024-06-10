@@ -5,13 +5,66 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>CRUD IN LARAVEL 11</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <style>
+    .side h4, .side h5 {
+      text-align: left;
+      padding-left: 50px;
+    }
+    .btn-group-custom .btn {
+      flex: 1;
+      margin-right: 5px;
+    }
+    .btn-group-custom .btn:last-child {
+      margin-right: 0;
+    }
+    .card {
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: scale(1.05);
+    }
+    .navbar{
+        padding-left: 270px;
+        padding-right: 150px;
+        li{
+            padding-left: 50px;
+        }
+    }
+  </style>
 </head>
 
 <body>
+<nav class="navbar navbar-dark bg-dark navbar navbar-expand-lg navbar-light bg-light w-100">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav me-auto mb-4 mb-lg-0">
+      <li class="nav-item active">
+        <a class="nav-link" href="{{ route('books.show') }}">Accueil</a>
+      </li>
+      <li class="nav-item">
+      <a class="nav-link" href="{{ route('categories.show') }}">Categories</a>
+      </li>
+      <li class="nav-item dropdown">
+      <a class="nav-link" href="{{ route('shelves.show') }}">Rayons</a>
+
+      </li>
+      <li class="nav-item">
+      <a class="nav-link" href="{{ route('autors.show') }}">Auteurs</a>
+      </li>
+      <li class="nav-item">
+      <a class="nav-link" href="{{ route('publishers.show') }}">Maisons d'édition</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
   <div class="container text-center">
     <div class="row">
       <div class="col">
-
         <hr>
         @if(session('status'))
           <div class="alert alert-success">
@@ -20,35 +73,36 @@
         @endif
 
         <div class="row">
-            <div class="col-md-4 mb-4">
-              <div class="card h-100">
-                <img src="{{ $book->image }}" class="card-img-top" alt="{{ $book->title }}" height="500">
-                <div class="card-body d-flex flex-column">
-                  <h5 class="card-title">{{ $book->title }}</h5>
-                  <p class="card-text flex-grow-1"><small class="text-muted">Résumé : {{ $book->description }}</small></p>
-                  <p class="card-text"><small class="text-muted">Catégorie : {{ $book->category->title }}</small></p>
-                  <div class="btn-group mt-auto" role="group">
-                    <a href="{{ route('books.edit', $book->id) }}" class="btn btn-primary">Modifier</a>
-                    <form action="{{ route('books.destroy', $book->id) }}" method="POST" style="display:inline;">
-                      @csrf
-                      @method('DELETE')
-                      <button type="submit" class="btn btn-danger">Supprimer</button>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-2 mb-2" >
-            <div class="btn-group mt-auto" role="group">
-                  <a href="{{ route('books.show', $book->id) }}" class="btn btn-info"><i class="fas fa-info-circle"></i></a>
-                  <a href="{{ route('books.edit', $book->id) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+          <div class="col-md-4 mb-2">
+            <div class="card h-100">
+              <img src="{{ $book->image }}" class="card-img-top" alt="{{ $book->title }}" height="500">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">{{ $book->title }}</h5>
+                <h6 class="card-text"><small class="text-muted">Catégorie : {{ $book->category->title }}</small></h6>
+                <div class="btn-group mt-auto btn-group-custom" role="group">
+                  <a href="{{ route('books.edit', $book->id) }}" class="btn btn-primary">Modifier</a>
                   <form action="{{ route('books.destroy', $book->id) }}" method="POST" style="display:inline;">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                    <button type="submit" class="btn btn-danger">Supprimer</button>
                   </form>
                 </div>
+              </div>
             </div>
+          </div>
+
+          <div class="side col-md-6 mb-2">
+            <h4 class="card-text"><small class="text-muted">Rayon : {{ $book->shelf->title }}</small></h4>
+            <h5 class="card-text"><small class="text-muted">Titre : {{ $book->title }}</small></h5>
+            <h5 class="card-text"><small class="text-muted">Auteur : {{ $book->autor }}</small></h5>
+            <h5 class="card-text"><small class="text-muted">Publié en  : {{ $book->publication_date }}</small></h5>
+            <h5 class="card-text"><small class="text-muted">Par la maison d'édition : {{ $book->publisher->name }}</small></h5>
+            <h5 class="card-text"><small class="text-muted">Résumé : {{ $book->description }}</small></h5>
+          </div>
+
+          <div class="categories col-md-2">
+            Rechercher par catégorie
+          </div>
         </div>
       </div>
     </div>

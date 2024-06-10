@@ -52,11 +52,11 @@
         <form action="{{ route('autors.store') }}" method="POST">
             @csrf
             <div class="form-group">
-                <label for="name" class="form-label">Nom complet</label>
+                <label for="name" class="form-label">Nom complet< de l'auteur/label>
                 <input type="text" name="name" id="name" class="form-control" required>
             </div>
             <div class="form-group text-center">
-                <button type="submit" class="btn btn-primary">Create</button>
+                <button type="submit" class="btn btn-primary">Ajouter</button>
                 <a href="{{ route('autors.show') }}" class="btn btn-secondary">Liste d'auteurs</a>
             </div>
         </form>
